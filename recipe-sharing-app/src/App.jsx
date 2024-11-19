@@ -8,7 +8,7 @@ const App = () => {
     <div>
       <h1>Recipe Sharing Application</h1>
       <Routes>
-        {/* Home route for displaying the recipe list and add form */}
+        {/* Home route */}
         <Route
           path="/"
           element={
@@ -18,7 +18,7 @@ const App = () => {
             </div>
           }
         />
-        {/* Route for displaying recipe details */}
+        {/* Recipe details route */}
         <Route path="/recipes/:id" element={<RecipeDetails />} />
       </Routes>
     </div>
