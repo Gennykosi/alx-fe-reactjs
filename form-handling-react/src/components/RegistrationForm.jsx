@@ -1,33 +1,40 @@
 import React, { useState } from 'react';
 
 const RegistrationForm = () => {
-  // State to manage form fields
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [errorMessage, setErrorMessage] = useState('');
+  const [errors, setErrors] = useState({});
 
-  // Handle form submission
   const handleSubmit = (e) => {
-    e.preventDefault(); // Prevent default form submission behavior
+    e.preventDefault();
 
-    // Basic validation logic
-    if (!username || !email || !password) {
-      setErrorMessage('All fields are required.');
+    const newErrors = {};
+
+    if (!email) {
+      newErrors.email = 'Email is required';
+    }
+
+    if (!password) {
+      newErrors.password = 'Password is required';
+    }
+
+    if (!username) {
+      newErrors.username = 'Username is required';
+    }
+
+    setErrors(newErrors);
+
+    if (Object.keys(newErrors).length > 0) {
       return;
     }
 
-    // Clear error message and log form data
-    setErrorMessage('');
     console.log({ username, email, password });
-    alert('Form submitted successfully!');
   };
 
   return (
     <form onSubmit={handleSubmit}>
       <h2>Register</h2>
-
-      {errorMessage && <p style={{ color: 'red' }}>{errorMessage}</p>}
 
       <div>
         <label htmlFor="username">Username:</label>
@@ -37,6 +44,7 @@ const RegistrationForm = () => {
           value={username}
           onChange={(e) => setUsername(e.target.value)}
         />
+        {errors.username && <div style={{ color: 'red' }}>{errors.username}</div>}
       </div>
 
       <div>
@@ -47,6 +55,7 @@ const RegistrationForm = () => {
           value={email}
           onChange={(e) => setEmail(e.target.value)}
         />
+        {errors.email && <div style={{ color: 'red' }}>{errors.email}</div>}
       </div>
 
       <div>
@@ -57,6 +66,7 @@ const RegistrationForm = () => {
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         />
+        {errors.password && <div style={{ color: 'red' }}>{errors.password}</div>}
       </div>
 
       <button type="submit">Submit</button>
