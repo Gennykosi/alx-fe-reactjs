@@ -6,6 +6,7 @@ import ProfileDetails from './components/ProfileDetails';
 import ProfileSettings from './components/ProfileSettings';
 import UserProfile from './components/UserProfile';
 import BlogPost from './components/BlogPost';
+import ProtectedRoute from './components/ProtectedRoute';
 
 const ProtectedRoute = ({ isAuthenticated, children }) => {
   return isAuthenticated ? children : <Navigate to="/" />;
@@ -42,6 +43,14 @@ const App = () => {
         <Route path="/user/:userId" element={<UserProfile />} />
         <Route path="/blog/:id" element={<BlogPost />} />
       </Routes>
+      <Route
+    path="/profile/*"
+    element={
+      <ProtectedRoute>
+        <Profile />
+      </ProtectedRoute>
+    }
+  />
     </Router>
   );
 };
