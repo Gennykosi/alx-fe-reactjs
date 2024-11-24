@@ -1,7 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route, Link, Navigate } from 'react-router-dom';
 import Home from './components/Home';
-import Profile from './components/Profile';
 import ProfileDetails from './components/ProfileDetails';
 import ProfileSettings from './components/ProfileSettings';
 import UserProfile from './components/UserProfile';
@@ -35,6 +34,9 @@ const App = () => {
         />
         <Route path="/user/:userId" element={<UserProfile />} />
       </Routes>
+      <Route path="details" element={<ProfileDetails />} />
+      <Route path="settings" element={<ProfileSettings />} />
+
     </Router>
   );
 };
