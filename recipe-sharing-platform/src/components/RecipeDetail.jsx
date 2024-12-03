@@ -34,31 +34,25 @@ const RecipeDetail = () => {
     return <div className="text-center mt-4">Loading...</div>;
   }
 
-  if (!recipe.ingredients || !recipe.instructions) {
-    return (
-      <div className="text-center mt-4 text-red-500">
-        Recipe details are incomplete.
-      </div>
-    );
-  }
-
   return (
     <div className="container mx-auto p-4">
-      <h1 className="text-3xl font-bold mb-4">{recipe.title}</h1>
-      <img
-        src={recipe.image}
-        alt={recipe.title}
-        className="w-full max-w-md mx-auto rounded-lg mb-4"
-      />
-      <p className="text-gray-700 mb-4">{recipe.summary}</p>
-      <h2 className="text-2xl font-semibold mb-2">Ingredients</h2>
-      <ul className="list-disc list-inside mb-4">
-        {recipe.ingredients.map((ingredient, index) => (
-          <li key={index}>{ingredient}</li>
-        ))}
-      </ul>
-      <h2 className="text-2xl font-semibold mb-2">Instructions</h2>
-      <p className="text-gray-700">{recipe.instructions}</p>
+      <div className="bg-white shadow-lg rounded-lg p-6 max-w-4xl mx-auto">
+        <h1 className="text-3xl font-bold mb-4">{recipe.title}</h1>
+        <img
+          src={recipe.image}
+          alt={recipe.title}
+          className="w-full max-w-md mx-auto rounded-lg mb-4 shadow-md"
+        />
+        <p className="text-gray-700 mb-4">{recipe.summary}</p>
+        <h2 className="text-2xl font-semibold mb-2">Ingredients</h2>
+        <ul className="list-disc list-inside mb-4">
+          {recipe.ingredients.map((ingredient, index) => (
+            <li key={index}>{ingredient}</li>
+          ))}
+        </ul>
+        <h2 className="text-2xl font-semibold mb-2">Instructions</h2>
+        <p className="text-gray-700">{recipe.instructions}</p>
+      </div>
     </div>
   );
 };
