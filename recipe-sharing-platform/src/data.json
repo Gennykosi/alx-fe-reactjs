@@ -3,48 +3,16 @@
       "id": 1,
       "title": "Spaghetti Carbonara",
       "summary": "A classic Italian pasta dish with eggs, cheese, bacon, and black pepper.",
-      "image": "https://via.placeholder.com/150"
-    },
+      "image": "https://via.placeholder.com/150",
+      "ingredients": ["Spaghetti", "Eggs", "Cheese", "Bacon", "Black Pepper"],
+      "instructions": "1. Boil spaghetti. 2. Cook bacon. 3. Mix eggs and cheese. 4. Combine and serve."
+    }, 
     {
       "id": 2,
       "title": "Chicken Tikka Masala",
       "summary": "Chunks of grilled chicken (tikka) cooked in a smooth buttery & creamy tomato based gravy.",
-      "image": "https://via.placeholder.com/150"
-    },
-    {
-        "id": 3,
-        "title": "Chicken Tikka Masala",
-        "summary": "Chunks of grilled chicken (tikka) cooked in a smooth buttery & creamy tomato based gravy.",
-        "image": "https://via.placeholder.com/150"
-    },
-    {
-        "id": 4,
-        "title": "Chicken Tikka Masala",
-        "summary": "Chunks of grilled chicken (tikka) cooked in a smooth buttery & creamy tomato based gravy.",
-        "image": "https://via.placeholder.com/150"
-      },
-      {
-        "id": 1,
-        "title": "Spaghetti Carbonara",
-        "summary": "A classic Italian pasta dish with eggs, cheese, bacon, and black pepper.",
-        "image": "https://via.placeholder.com/150"
-      },
-      {
-        "id": 2,
-        "title": "Chicken Tikka Masala",
-        "summary": "Chunks of grilled chicken (tikka) cooked in a smooth buttery & creamy tomato based gravy.",
-        "image": "https://via.placeholder.com/150"
-      },
-      {
-          "id": 3,
-          "title": "Chicken Tikka Masala",
-          "summary": "Chunks of grilled chicken (tikka) cooked in a smooth buttery & creamy tomato based gravy.",
-          "image": "https://via.placeholder.com/150"
-      },
-      {
-          "id": 4,
-          "title": "Chicken Tikka Masala",
-          "summary": "Chunks of grilled chicken (tikka) cooked in a smooth buttery & creamy tomato based gravy.",
-          "image": "https://via.placeholder.com/150"
-        }
+      "image": "https://via.placeholder.com/150",
+      "ingredients": ["Chicken", "Tomatoes", "Butter", "Cream", "Spices"],
+      "instructions": "1. Marinate chicken. 2. Grill chicken. 3. Prepare gravy. 4. Combine and serve." 
+    }
   ]
