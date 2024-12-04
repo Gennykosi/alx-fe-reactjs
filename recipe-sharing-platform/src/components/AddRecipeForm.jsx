@@ -7,17 +7,25 @@ const AddRecipeForm = () => {
     steps: "",
   });
 
+  // Handle input changes dynamically
   const handleChange = (e) => {
-    const { name, value } = e.target; // Accessing name and value properties correctly
+    const { name, value } = e.target; // Accessing name and value properties of the input
     setFormData((prevData) => ({
       ...prevData,
-      [name]: value, // Updating state dynamically based on input name
+      [name]: value, // Dynamically update the state
     }));
   };
 
+  // Handle form submission
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("Form submitted:", formData);
+    if (formData.title && formData.ingredients && formData.steps) {
+      console.log("Recipe Submitted:", formData);
+      // Reset form after submission
+      setFormData({ title: "", ingredients: "", steps: "" });
+    } else {
+      alert("Please fill out all fields.");
+    }
   };
 
   return (
@@ -37,7 +45,7 @@ const AddRecipeForm = () => {
             id="title"
             name="title"
             value={formData.title}
-            onChange={handleChange} // Correctly handled change
+            onChange={handleChange} // Accessing e.target.value correctly
             className="mt-1 block w-full rounded-md border border-gray-300 focus:ring-blue-500 focus:border-blue-500 shadow-sm"
             placeholder="Enter the recipe title"
           />
@@ -55,7 +63,7 @@ const AddRecipeForm = () => {
             id="ingredients"
             name="ingredients"
             value={formData.ingredients}
-            onChange={handleChange} // Correctly handled change
+            onChange={handleChange} // Accessing e.target.value correctly
             className="mt-1 block w-full rounded-md border border-gray-300 focus:ring-blue-500 focus:border-blue-500 shadow-sm"
             placeholder="List ingredients, separated by commas"
             rows="4"
@@ -74,7 +82,7 @@ const AddRecipeForm = () => {
             id="steps"
             name="steps"
             value={formData.steps}
-            onChange={handleChange} // Correctly handled change
+            onChange={handleChange} // Accessing e.target.value correctly
             className="mt-1 block w-full rounded-md border border-gray-300 focus:ring-blue-500 focus:border-blue-500 shadow-sm"
             placeholder="Describe the preparation steps"
             rows="4"
@@ -96,5 +104,6 @@ const AddRecipeForm = () => {
 };
 
 export default AddRecipeForm;
+
 
 
