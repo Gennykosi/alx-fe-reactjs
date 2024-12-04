@@ -7,59 +7,17 @@ const AddRecipeForm = () => {
     steps: "",
   });
 
-  const [errors, setErrors] = useState({});
-
-  const validateForm = () => {
-    const validationErrors = {};
-
-    // Check if title is empty
-    if (!formData.title.trim()) {
-      validationErrors.title = "Recipe title is required.";
-    }
-
-    // Check if ingredients are provided and include at least two items
-    const ingredientsArray = formData.ingredients
-      .split(",")
-      .map((item) => item.trim())
-      .filter((item) => item !== "");
-    if (ingredientsArray.length < 2) {
-      validationErrors.ingredients =
-        "Please provide at least two ingredients, separated by commas.";
-    }
-
-    // Check if steps are empty
-    if (!formData.steps.trim()) {
-      validationErrors.steps = "Preparation steps are required.";
-    }
-
-    setErrors(validationErrors);
-
-    return Object.keys(validationErrors).length === 0;
-  };
-
   const handleChange = (e) => {
-    const { name, value } = e.target;
+    const { name, value } = e.target; // Accessing name and value properties correctly
     setFormData((prevData) => ({
       ...prevData,
-      [name]: value,
-    }));
-    setErrors((prevErrors) => ({
-      ...prevErrors,
-      [name]: "",
+      [name]: value, // Updating state dynamically based on input name
     }));
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (validateForm()) {
-      console.log("Form submitted:", formData);
-      setFormData({
-        title: "",
-        ingredients: "",
-        steps: "",
-      });
-      setErrors({});
-    }
+    console.log("Form submitted:", formData);
   };
 
   return (
@@ -79,15 +37,10 @@ const AddRecipeForm = () => {
             id="title"
             name="title"
             value={formData.title}
-            onChange={handleChange}
-            className={`mt-1 block w-full rounded-md border ${
-              errors.title ? "border-red-500" : "border-gray-300"
-            } focus:ring-blue-500 focus:border-blue-500 shadow-sm`}
+            onChange={handleChange} // Correctly handled change
+            className="mt-1 block w-full rounded-md border border-gray-300 focus:ring-blue-500 focus:border-blue-500 shadow-sm"
             placeholder="Enter the recipe title"
           />
-          {errors.title && (
-            <p className="text-red-500 text-sm mt-1">{errors.title}</p>
-          )}
         </div>
 
         {/* Ingredients */}
@@ -102,16 +55,11 @@ const AddRecipeForm = () => {
             id="ingredients"
             name="ingredients"
             value={formData.ingredients}
-            onChange={handleChange}
-            className={`mt-1 block w-full rounded-md border ${
-              errors.ingredients ? "border-red-500" : "border-gray-300"
-            } focus:ring-blue-500 focus:border-blue-500 shadow-sm`}
+            onChange={handleChange} // Correctly handled change
+            className="mt-1 block w-full rounded-md border border-gray-300 focus:ring-blue-500 focus:border-blue-500 shadow-sm"
             placeholder="List ingredients, separated by commas"
             rows="4"
           ></textarea>
-          {errors.ingredients && (
-            <p className="text-red-500 text-sm mt-1">{errors.ingredients}</p>
-          )}
         </div>
 
         {/* Preparation Steps */}
@@ -126,16 +74,11 @@ const AddRecipeForm = () => {
             id="steps"
             name="steps"
             value={formData.steps}
-            onChange={handleChange}
-            className={`mt-1 block w-full rounded-md border ${
-              errors.steps ? "border-red-500" : "border-gray-300"
-            } focus:ring-blue-500 focus:border-blue-500 shadow-sm`}
+            onChange={handleChange} // Correctly handled change
+            className="mt-1 block w-full rounded-md border border-gray-300 focus:ring-blue-500 focus:border-blue-500 shadow-sm"
             placeholder="Describe the preparation steps"
             rows="4"
           ></textarea>
-          {errors.steps && (
-            <p className="text-red-500 text-sm mt-1">{errors.steps}</p>
-          )}
         </div>
 
         {/* Submit Button */}
@@ -153,4 +96,5 @@ const AddRecipeForm = () => {
 };
 
 export default AddRecipeForm;
+
 
