@@ -7,24 +7,37 @@ const AddRecipeForm = () => {
     steps: "",
   });
 
-  // Handle input changes dynamically
+  const [errors, setErrors] = useState({}); // State to track validation errors
+
+  const validate = () => {
+    const newErrors = {};
+    if (!formData.title.trim()) newErrors.title = "Recipe title is required.";
+    if (!formData.ingredients.trim())
+      newErrors.ingredients = "Ingredients are required.";
+    else if (formData.ingredients.split(",").length < 2)
+      newErrors.ingredients = "Please list at least two ingredients.";
+    if (!formData.steps.trim())
+      newErrors.steps = "Preparation steps are required.";
+    return newErrors;
+  };
+
   const handleChange = (e) => {
-    const { name, value } = e.target; // Accessing name and value properties of the input
+    const { name, value } = e.target;
     setFormData((prevData) => ({
       ...prevData,
-      [name]: value, // Dynamically update the state
+      [name]: value,
     }));
   };
 
-  // Handle form submission
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (formData.title && formData.ingredients && formData.steps) {
-      console.log("Recipe Submitted:", formData);
-      // Reset form after submission
-      setFormData({ title: "", ingredients: "", steps: "" });
+    const validationErrors = validate();
+    if (Object.keys(validationErrors).length > 0) {
+      setErrors(validationErrors);
     } else {
-      alert("Please fill out all fields.");
+      console.log("Recipe Submitted:", formData);
+      setFormData({ title: "", ingredients: "", steps: "" });
+      setErrors({});
     }
   };
 
@@ -45,10 +58,17 @@ const AddRecipeForm = () => {
             id="title"
             name="title"
             value={formData.title}
-            onChange={handleChange} // Accessing e.target.value correctly
-            className="mt-1 block w-full rounded-md border border-gray-300 focus:ring-blue-500 focus:border-blue-500 shadow-sm"
+            onChange={handleChange}
+            className={`mt-1 block w-full rounded-md border ${
+              errors.title
+                ? "border-red-500 focus:ring-red-500 focus:border-red-500"
+                : "border-gray-300 focus:ring-blue-500 focus:border-blue-500"
+            } shadow-sm`}
             placeholder="Enter the recipe title"
           />
+          {errors.title && (
+            <p className="mt-1 text-sm text-red-500">{errors.title}</p>
+          )}
         </div>
 
         {/* Ingredients */}
@@ -63,11 +83,18 @@ const AddRecipeForm = () => {
             id="ingredients"
             name="ingredients"
             value={formData.ingredients}
-            onChange={handleChange} // Accessing e.target.value correctly
-            className="mt-1 block w-full rounded-md border border-gray-300 focus:ring-blue-500 focus:border-blue-500 shadow-sm"
+            onChange={handleChange}
+            className={`mt-1 block w-full rounded-md border ${
+              errors.ingredients
+                ? "border-red-500 focus:ring-red-500 focus:border-red-500"
+                : "border-gray-300 focus:ring-blue-500 focus:border-blue-500"
+            } shadow-sm`}
             placeholder="List ingredients, separated by commas"
             rows="4"
           ></textarea>
+          {errors.ingredients && (
+            <p className="mt-1 text-sm text-red-500">{errors.ingredients}</p>
+          )}
         </div>
 
         {/* Preparation Steps */}
@@ -82,11 +109,18 @@ const AddRecipeForm = () => {
             id="steps"
             name="steps"
             value={formData.steps}
-            onChange={handleChange} // Accessing e.target.value correctly
-            className="mt-1 block w-full rounded-md border border-gray-300 focus:ring-blue-500 focus:border-blue-500 shadow-sm"
+            onChange={handleChange}
+            className={`mt-1 block w-full rounded-md border ${
+              errors.steps
+                ? "border-red-500 focus:ring-red-500 focus:border-red-500"
+                : "border-gray-300 focus:ring-blue-500 focus:border-blue-500"
+            } shadow-sm`}
             placeholder="Describe the preparation steps"
             rows="4"
           ></textarea>
+          {errors.steps && (
+            <p className="mt-1 text-sm text-red-500">{errors.steps}</p>
+          )}
         </div>
 
         {/* Submit Button */}
@@ -104,6 +138,5 @@ const AddRecipeForm = () => {
 };
 
 export default AddRecipeForm;
-
 
 
