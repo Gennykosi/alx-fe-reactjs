@@ -7,20 +7,22 @@ const AddRecipeForm = () => {
     steps: "",
   });
 
-  const [errors, setErrors] = useState({}); // State to track validation errors
+  const [errors, setErrors] = useState({}); // Track validation errors
 
-  const validate = () => {
-    const newErrors = {};
-    if (!formData.title.trim()) newErrors.title = "Recipe title is required.";
-    if (!formData.ingredients.trim())
-      newErrors.ingredients = "Ingredients are required.";
-    else if (formData.ingredients.split(",").length < 2)
-      newErrors.ingredients = "Please list at least two ingredients.";
-    if (!formData.steps.trim())
-      newErrors.steps = "Preparation steps are required.";
-    return newErrors;
+  // Validate form fields
+  const validateForm = () => {
+    const validationErrors = {};
+    if (!formData.title.trim()) validationErrors.title = "Recipe title is required.";
+    if (!formData.ingredients.trim()) {
+      validationErrors.ingredients = "Ingredients are required.";
+    } else if (formData.ingredients.split(",").length < 2) {
+      validationErrors.ingredients = "Please list at least two ingredients.";
+    }
+    if (!formData.steps.trim()) validationErrors.steps = "Preparation steps are required.";
+    return validationErrors;
   };
 
+  // Handle input changes dynamically
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prevData) => ({
@@ -29,15 +31,16 @@ const AddRecipeForm = () => {
     }));
   };
 
+  // Handle form submission
   const handleSubmit = (e) => {
     e.preventDefault();
-    const validationErrors = validate();
+    const validationErrors = validateForm();
     if (Object.keys(validationErrors).length > 0) {
-      setErrors(validationErrors);
+      setErrors(validationErrors); // Display errors if validation fails
     } else {
       console.log("Recipe Submitted:", formData);
-      setFormData({ title: "", ingredients: "", steps: "" });
-      setErrors({});
+      setFormData({ title: "", ingredients: "", steps: "" }); // Reset form
+      setErrors({}); // Clear errors
     }
   };
 
@@ -138,5 +141,3 @@ const AddRecipeForm = () => {
 };
 
 export default AddRecipeForm;
-
-
