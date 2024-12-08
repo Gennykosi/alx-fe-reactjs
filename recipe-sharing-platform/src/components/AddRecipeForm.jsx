@@ -31,8 +31,7 @@ const AddRecipeForm = () => {
     return Object.keys(newErrors).length === 0;
   };
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
+  const handleChange = ({ name, value }) => {
     setFormData({
       ...formData,
       [name]: value,
@@ -58,7 +57,7 @@ const AddRecipeForm = () => {
           id="title"
           name="title"
           value={formData.title}
-          onChange={handleChange}
+          onChange={({ target }) => handleChange(target)}
           required
         />
         {errors.title && <p style={{ color: 'red' }}>{errors.title}</p>}
@@ -70,7 +69,7 @@ const AddRecipeForm = () => {
           id="ingredients"
           name="ingredients"
           value={formData.ingredients}
-          onChange={handleChange}
+          onChange={({ target }) => handleChange(target)}
           required
         />
         {errors.ingredients && <p style={{ color: 'red' }}>{errors.ingredients}</p>}
@@ -82,7 +81,7 @@ const AddRecipeForm = () => {
           id="steps"
           name="steps"
           value={formData.steps}
-          onChange={handleChange}
+          onChange={({ target }) => handleChange(target)}
           required
         />
         {errors.steps && <p style={{ color: 'red' }}>{errors.steps}</p>}
