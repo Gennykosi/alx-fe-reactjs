@@ -2,8 +2,8 @@ import React, { useState } from "react";
 import { fetchUserData } from "../services/githubService"; // Import the fetchUserData function
 
 const Search = () => {
-  const [username, setUsername] = useState(""); // State for the username input
-  const [user, setUser] = useState(null); // State for the fetched user data
+  const [username, setUsername] = useState(""); // State for storing the username input
+  const [user, setUser] = useState(null); // State for storing the fetched user data
   const [error, setError] = useState(null); // State for error messages
   const [loading, setLoading] = useState(false); // State for loading status
 
