@@ -1,13 +1,20 @@
 import axios from "axios";
 
-// GitHub API endpoint for fetching user data by username
-const API_URL = "https://api.github.com/users/";
+const API_BASE_URL = "https://api.github.com";
 
-export const fetchUserData = async (username) => {
-  try {
-    const response = await axios.get(`${API_URL}${username}`); // Make GET request to GitHub API
-    return response.data; // Return the user data
-  } catch (error) {
-    throw new Error("User not found"); // If the API call fails, throw an error
-  }
+export const fetchAdvancedSearch = async ({ username, location, minRepos }) => {
+  let query = "";
+
+  if (username) query += `${username}+`;
+  if (location) query += `location:${location}+`;
+  if (minRepos) query += `repos:>=${minRepos}`;
+
+  const response = await axios.get(`${API_BASE_URL}/search/users`, {
+    params: { q: query },
+    headers: {
+      Authorization: `Bearer ${process.env.REACT_APP_GITHUB_API_KEY}`,
+    },
+  });
+
+  return response.data;
 };
